@@ -1,0 +1,7 @@
+/* Full size screen, over 640px */
+
+table#sheet
+{
+ width: 100%;
+ padding: 2%;
+}

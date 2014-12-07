@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Worksheet - DATE</title>
+
+<!-- External files -->
+
+<link rel="stylesheet" href="./include/jquery-ui-1.11.2.custom/jquery-ui.min.css">
+<script src="./include/jquery-ui-1.11.2.custom/external/jquery/jquery.js"></script>
+<script src="./include/jquery-ui-1.11.2.custom/jquery-ui.min.js"></script>
+
+<!-- Internal files -->
+
+<link rel="stylesheet" href="./worksheet.css">
+<link rel="stylesheet" media="(max-width: 640px)" href="./max640.css">
+<link rel="stylesheet" media="(min-width: 640px)" href="./min640.css">
+<link rel="stylesheet" media="(orientation: portrait)" href="./portrait.css">
+<link rel="stylesheet" media="(orientation: landscape)" href="./landscape.css">
+<script src="./include/clean.js"></script>
+
+</head>
+<body>
+
+<!--
+     Worksheet top, display as a interactive form or to print
+
+     Form for searching past worksheets or starting a new one
+     Won't normally be displayed
+-->
+
+<form id="header">
+<label for="date">Date</label>
+<input type="text" name="date" required id="date" placeholder="MM/DD/YYYY">
+
+<label for="truck">Truck</label>
+<select name="truck" id="truck">
+ <option value="518">518</option>
+ <option value="1020">1020</option>
+ <option value="610">610</option>
+</select>
+
+<label for="techs">Technician(s)</label>
+<select multiple name="techs" id="techs">
+ <option value="NAME">NAME</option>
+ <option value="NAME2">NAME2</option>
+ <option value="OTHER">OTHER</option>
+</select>
+
+<label for="submit"></label>
+<input type="submit" name="submit" id="next" value="Next">
+</form>
+
+<!--
+     END_HEADER
+-->
+
+<!--
+     Here's the actual worksheet, autofilling AJAX missing
+-->
+
+<form id="sheet">
+
+<label for="location">Address or Building Name</label>
+<input type="text" name="location" class="location">
+
+<label for="unit">Unit Number/Label</label>
+<input type="text" name="unit">
+
+<label for="client">Client - Who To Bill</label>
+<input type="text" name="client">
+
+<label for="areas">Number of Areas</label>
+<input type="number" name="areas">
+
+<label for="notes">Notes</label>
+<textarea name="notes">EG: Heavy deo, flood</textarea>
+
+<label for="price">Price</label>
+<input type="text" name="price">
+
+</form>
+
+</body>
+</html>
