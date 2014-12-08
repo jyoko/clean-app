@@ -25,7 +25,7 @@
      Worksheet top, display as a interactive form or to print
 
      Form for searching past worksheets or starting a new one
-     Won't normally be displayed
+     Initial screen
 -->
 
 <form id="header">
@@ -41,13 +41,14 @@
 
 <label for="techs">Technician(s)</label>
 <select multiple name="techs" id="techs">
- <option value="NAME">NAME</option>
- <option value="NAME2">NAME2</option>
- <option value="OTHER">OTHER</option>
+ <option value="Ron">Ron</option>
+ <option value="James">James</option>
+ <option value="newTech" id="newTech">Add new tech</option>
 </select>
+<input type="text" name="newTech" id="newTechBox" style="display: none;">
 
-<label for="submit"></label>
-<input type="submit" name="submit" id="next" value="Next">
+<label for="next0"></label>
+<input type="button" name="next0" id="next0" value="Next">
 </form>
 
 <!--
@@ -55,7 +56,7 @@
 -->
 
 <!--
-     Here's the actual worksheet, autofilling AJAX missing
+     Here's the actual worksheet, main working screen
 -->
 
 <form id="sheet">

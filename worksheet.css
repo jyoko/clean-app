@@ -4,6 +4,14 @@ body
  padding: 0px;
 }
 
+/* For magic tech select */
+
+#newTechBox
+{
+ position: relative;
+ top: -3.9em;
+}
+
 /*
 
 table

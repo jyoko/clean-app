@@ -13,31 +13,42 @@ $(function() {
 	$("#date").datepicker();
 	$("#date").change(function(){ 
 
-            var qDate = $("#date").val(); // TODO: check this input
-
-            $.get("header.php?d="+qDate, function( data ) {
-                alert(data);
-            });
-
-            //var queryData = ''; // Empty if no saved values
-
-            // Fill following fields, loads defaults if no data
-            fillFields(queryData);
+            var qDate = $("#date").val(); // TODO: Sanitize
+            // Fill following fields
+            fillField('#truck',qDate);
 
         }
     );
+
+    // Magic 'Add New' option in technician select
+    $("#techs").change(function(){
+        if ( !document.getElementById('newTech') ) {
+            $("#techs").append('<option id="newTech">Add new tech</option>');
+        }
+    });
+    $("#newTech").focus(function(){
+        $("#newTechBox").show().focus();
+    });
+    $("#newTechBox").blur(function(){
+        var newTech = $("#newTechBox").val();
+        $("#newTech").remove();
+        $("#techs").append('<option name="'+newTech+'">'+newTech+'</option>');
+        $("#newTechBox").hide();
+    });
+
+
+    // Update techs when truck changes
+    $("#truck").change(function(){
+        fillField('#techs',$("#truck").val());
+    });
 
 });
 
 
 // Propogate changes forward
-function fillFields( queryData ) {
+function fillField( element, query ) {
 
-    if ( !queryData ) {
-        // Assume new sheet, no action for now
-        // TODO: Load default
-    } else {
-        // push data into fields
-    }
+    // push data into fields
+    $(element).load('include/header.php?d='+query);
 
 }

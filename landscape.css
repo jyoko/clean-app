@@ -1,11 +1,10 @@
-/* Small-screen devices, under 640px */
+/* For landscape shapes, duh */
 
 form
 {
  text-align: center;
  width: 98%;
  margin: 2%;
- margin-top: -3%;
 }
 
 label
@@ -73,4 +72,3 @@ form#sheet input,textarea
  font-size: 2em;
  font-weight: bold;
 }
-
