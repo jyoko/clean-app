@@ -1,12 +1,4 @@
-/* Small-screen devices, under 640px */
-
-form
-{
- text-align: center;
- width: 98%;
- margin: 2%;
- margin-top: -3%;
-}
+/* Small-screen devices */
 
 label
 {
@@ -26,17 +18,11 @@ form#header label
 
 form#header input,select
 {
- font-size: 3em;
+ font-size: 1em;
  font-style: none;
- width: 85%;
- margin-bottom: 1.5em;
+ margin-top: 1em;
  text-align: center;
  border: none;
-}
-
-form#header input#next
-{
- margin-top: -3em;
 }
 
 /* Sheet form styles */
@@ -50,7 +36,6 @@ form#sheet input,textarea
 {
  font-size: 3em;
  font-style: none;
- max-width: 85%;
  margin-bottom: 1.5em;
  text-align: center;
 }

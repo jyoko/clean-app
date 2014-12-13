@@ -1,0 +1,52 @@
+/* Large screen devices */
+
+/* TODO: Get this & landscape styles tweaked together */
+
+form
+{
+ width: 80%;
+ margin-left: 10%;
+ margin-top: 2em;
+ border: 1px solid #000;
+}
+
+/* box model fix */
+
+input, textarea, select, button
+{
+ -webkit-box-sizing: border-box; /* legacy WebKit */
+ -moz-box-sizing: border-box; /* Gecko */
+ box-sizing: border-box;
+}
+
+/* Header style */
+
+span.headerLbl
+{
+ display: inline-block;
+ width: 40%;
+ text-align: center;
+}
+
+form#header label
+{
+ display: block;
+ width: 80%;
+ margin-left: 10%;
+ margin-top: 1em;
+ font-size: 2em;
+ font-style: italic;
+ border: 1px solid #000;
+}
+
+form#header input,select
+{
+ text-align: center;
+ font-size: 1em;
+ padding: 1em;
+ width: 50%;
+ margin-left: 5%;
+ border: none;
+ vertical-align: middle;
+}
+
