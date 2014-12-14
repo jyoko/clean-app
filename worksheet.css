@@ -4,61 +4,9 @@ body
  padding: 0px;
 }
 
-/* For magic tech select */
+/* Popover boxes for SELECTs */
 
-#newTechBox
+input.magicBox
 {
- position: relative;
- top: -3.9em;
 }
 
-/*
-
-table
-{
- margin: 50px 0 50px 50px;
-}
-
-table#header
-{
- width: 1200px;
- font-size: 28px;
- font-style: italic;
-}
-
-table#header td
-{
- text-align: right;
- padding: 20px;
-}
-
-table#header td.line
-{
- width: 300px;
- border-bottom: 2px solid #000;
- text-align: center;
- font-style: normal;
-}
-
-table#sheet
-{
- width: 1500px;
- border-collapse: collapse;
- border: 1px solid #000;
- padding: 10px;
-}
-
-table#sheet td
-{
- width: 200px;
- border: 1px solid #000;
-}
-
-table#sheet th
-{
- width: 200px;
- border: 1px solid #000;
- font-size: 20px;
-}
-
-*/

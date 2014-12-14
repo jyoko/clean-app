@@ -2,73 +2,41 @@
 
 form
 {
- text-align: center;
- width: 98%;
+ width: 96%;
  margin: 2%;
 }
 
-label
+/* box model fix */
+
+input, textarea, select, button
 {
- display: block;
- padding-top: 1em;
- margin-bottom: 1em;
- font-size: 3em;
- border-top: 2px solid #d88;
+ -webkit-box-sizing: border-box; /* legacy WebKit */
+ -moz-box-sizing: border-box; /* Gecko */
+ box-sizing: border-box;
 }
 
-/* Header form styles */
+/* Header style */
+
+span.headerLbl
+{
+ width: 40%;
+}
 
 form#header label
 {
+ padding: 0px;
+ width: 100%;
+ font-size: 3em;
  font-style: italic;
+ border: 1px solid #000;
 }
 
 form#header input,select
 {
- font-size: 3em;
- font-style: none;
- width: 85%;
- margin-bottom: 1.5em;
- text-align: center;
+ margin: 0px;
+ font-size: 1em;
+ max-width: 50%;
  border: none;
+ vertical-align: middle;
 }
 
-form#header input#next
-{
- margin-top: -3em;
-}
-
-/* Sheet form styles */
-
-form#sheet label
-{
- font-weight: bold;
-}
-
-form#sheet input,textarea
-{
- font-size: 3em;
- font-style: none;
- max-width: 85%;
- margin-bottom: 1.5em;
- text-align: center;
-}
-
-/* jQuery overrides for specific layout */
-
-.ui-datepicker
-{
- font-size: 2em;
- width: 80%;
-}
-
-.ui-selectmenu-menu
-{
- font-size: 2em;
-}
-
-.ui-selectmenu-text
-{
- font-size: 2em;
- font-weight: bold;
-}
