@@ -1,10 +1,17 @@
-// Wrangling all JS logic in here
-// building on top of jQuery
-// TODO: seriously, build it on top of jQuery. Working on getting familiar with that now
+// appIzer
+// version: alpha
+// jQuery(UI) Plugin
+
+;(function( $,window,document,undefined ) {
+    
+}(jQuery,window,document));
 
 // on DOMready, initialize everything
 // TODO: Make this fit with paging, add device-specific features
 $(function() {
+
+    // Testing plugin
+    $('#truck').appIzer();
 
     // Loop over FORMs
     //   element.makePretty()
