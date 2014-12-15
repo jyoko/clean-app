@@ -1,7 +1,8 @@
 <?php
 
 # This structure is hacky as shit
-# Spits out data to fill field data
+# Spits out HTML data to fill header fields, useful for testing
+# This is meant to be very replaceable, UI receives from jQuery's .load() function
 
 // Check input string, query and give relevant data
 // Hard coded outputs to continue design

@@ -5,7 +5,7 @@
 // Apply events and 'app' behavior top-down,
 // filling as we go
 
-// TODO: Make this fit with paging
+// TODO: Make this fit with paging, add device-specific features
 // TODO: Get rid of the specific IDs, loop the form? Maybe new branch
 $(function() {
 
@@ -21,7 +21,6 @@ $(function() {
     );
 
     // Magic 'Add New' option for SELECTs
-    // TODO: Make this work from a pure SELECT? need to decide during generation
     // TODO: Definitely need to rework my display logic
     makePrettySelect('techs', 'Add new technician');
 
@@ -33,6 +32,8 @@ $(function() {
 });
 
 // Creates pretty, editable multiselects
+// Takes the SELECT field ID and optional replacement for the add new text
+// TODO: make every value editable
 function makePrettySelect(selectID,msg) {
 
     msg = msg || 'Add new value';
@@ -55,8 +56,8 @@ function makePrettySelect(selectID,msg) {
 }
 
 // Creates a clickable 'Add New' option to multiselect DIV
-// Needs DIV and SELECT ids, optional msg to show for add text, counter for recursive use
-// TODO: make every value editable
+// subroutine of makePrettySelect, don't use directly
+// Needs DIV and SELECT ids, msg to show for add text, counter for recursive use
 function addNewSelect(divID,selectID,msg,counter) {
 
     counter = counter || 0;
