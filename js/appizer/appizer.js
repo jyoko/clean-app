@@ -88,6 +88,6 @@ function addNewSelect(divID,selectID,msg,counter) {
 function fillField( element, query ) {
 
     // push data into fields
-    $(element).load('./include/header.php?d='+query);
+    $(element).load('./backend/header.php?d='+query);
 
 }

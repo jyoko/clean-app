@@ -17,18 +17,18 @@ list($dayLong,$day,$monthLong,$month,$year) = explode(' ', date('l j F n Y'));
 
 <!-- External files -->
 
-<link rel="stylesheet" href="./include/jquery-ui-1.11.2.custom/jquery-ui.min.css">
-<script src="./include/jquery-ui-1.11.2.custom/external/jquery/jquery.js"></script>
-<script src="./include/jquery-ui-1.11.2.custom/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="./js/jquery-ui-1.11.2.custom/jquery-ui.min.css">
+<script src="./js/jquery-ui-1.11.2.custom/external/jquery/jquery.js"></script>
+<script src="./js/jquery-ui-1.11.2.custom/jquery-ui.min.js"></script>
 
 <!-- Internal files -->
 
-<link rel="stylesheet" href="./worksheet.css">
-<link rel="stylesheet" media="(orientation: portrait)" href="./portrait.css">
-<link rel="stylesheet" media="(orientation: landscape)" href="./landscape.css">
-<link rel="stylesheet" media="(max-width: 900px)" href="./maxwidth.css">
-<link rel="stylesheet" media="(min-width: 900px)" href="./minwidth.css">
-<script src="./include/clean.js"></script>
+<link rel="stylesheet" href="./style/worksheet.css">
+<link rel="stylesheet" media="(orientation: portrait)" href="./style/portrait.css">
+<link rel="stylesheet" media="(orientation: landscape)" href="./style/landscape.css">
+<link rel="stylesheet" media="(max-width: 900px)" href="./style/maxwidth.css">
+<link rel="stylesheet" media="(min-width: 900px)" href="./style/minwidth.css">
+<script src="./js/appizer/appizer.js"></script>
 
 </head>
 <body>
@@ -56,7 +56,6 @@ list($dayLong,$day,$monthLong,$month,$year) = explode(' ', date('l j F n Y'));
  <option value="NAME1">NAME1</option>
 </select>
 </label>
-<input type="text" name="newTech" id="newTechBox" style="display: none;">
 
 <label><input type="button" name="next0" value="Next">
 </label>
