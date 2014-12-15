@@ -20,22 +20,10 @@ $(function() {
         }
     );
 
-    // Magic 'Add New' option in technician select
-    $("#techs").change(function(){
-        if ( !document.getElementById('newTech') ) {
-            $("#techs").append('<option id="newTech">Add new tech</option>');
-        }
-    });
-    $("#newTech").focus(function(){
-        $("#newTechBox").show().focus();
-    });
-    $("#newTechBox").blur(function(){
-        var newTech = $("#newTechBox").val();
-        $("#newTech").remove();
-        $("#techs").append('<option name="'+newTech+'">'+newTech+'</option>');
-        $("#newTechBox").hide();
-    });
-
+    // Magic 'Add New' option for SELECTs
+    // TODO: Make this work from a pure SELECT? need to decide during generation
+    // TODO: Definitely need to rework my display logic
+    makePrettySelect('techs', 'Add new technician');
 
     // Update techs when truck changes
     $("#truck").change(function(){
@@ -44,11 +32,61 @@ $(function() {
 
 });
 
+// Creates pretty, editable multiselects
+function makePrettySelect(selectID,msg) {
+
+    msg = msg || 'Add new value';
+    var counter = 0;
+    var divID = 'div'+selectID;
+    var spanID = 'span'+selectID;
+
+    // Prepend with newDIV
+    $('#'+selectID).before('<div class="multiSelect" id="'+divID+'"></div>');
+    // Loop OPTIONs, load into newDIV->SPANs
+    $('#'+selectID+'  option').each(function() {
+        var uspanID = spanID+counter;
+        $('#'+divID).append('<span class="multiSval" id="'+uspanID+'">'+$(this).val()+'</span>');
+        counter++;
+    });
+    $('#'+selectID).hide();
+
+    addNewSelect(divID,selectID,msg,counter);
+
+}
+
+// Creates a clickable 'Add New' option to multiselect DIV
+// Needs DIV and SELECT ids, optional msg to show for add text, counter for recursive use
+// TODO: make every value editable
+function addNewSelect(divID,selectID,msg,counter) {
+
+    counter = counter || 0;
+    var newSpan = 'span'+divID+counter;
+    var newText = 'text'+selectID+counter;
+
+    // Add new option to DIV with handlers
+    $('#'+divID).append('<span class="multiAdd" id="'+newSpan+'">'+msg+'</span>');
+    $('#'+divID).append('<input type="text" class="magicBox" name="'+newText+'" id="'+newText+'">');
+    $('#'+newText).hide();
+    $('#'+newSpan).click(function() {
+        $(this).off('click');
+        $(this).hide();
+        $('#'+newText).show().focus();
+    });
+    $('#'+newText).blur(function() {
+        var newValue = $('#'+newText).val();
+        $('#'+newSpan).html(newValue);
+        $('#'+selectID).append('<option selected value="'+newValue+'">'+newValue+'</option>');
+        $('#'+newText).hide();
+        $('#'+newSpan).show();
+        addNewSelect(divID,selectID,msg,++counter);
+    });
+
+}
 
 // Propogate changes forward
 function fillField( element, query ) {
 
     // push data into fields
-    $(element).load('include/header.php?d='+query);
+    $(element).load('./include/header.php?d='+query);
 
 }

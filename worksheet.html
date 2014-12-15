@@ -12,10 +12,10 @@
 <!-- Internal files -->
 
 <link rel="stylesheet" href="./worksheet.css">
-<link rel="stylesheet" media="(max-width: 640px)" href="./max640.css">
-<link rel="stylesheet" media="(min-width: 640px)" href="./min640.css">
 <link rel="stylesheet" media="(orientation: portrait)" href="./portrait.css">
 <link rel="stylesheet" media="(orientation: landscape)" href="./landscape.css">
+<link rel="stylesheet" media="(max-width: 900px)" href="./maxwidth.css">
+<link rel="stylesheet" media="(min-width: 900px)" href="./minwidth.css">
 <script src="./include/clean.js"></script>
 
 </head>
@@ -29,26 +29,31 @@
 -->
 
 <form id="header">
-<label for="date">Date</label>
-<input type="text" name="date" required id="date" placeholder="MM/DD/YYYY">
 
-<label for="truck">Truck</label>
+<label>
+<span class="headerLbl">Date</span>
+<input type="text" name="date" required id="date" placeholder="MM/DD/YYYY">
+</label>
+
+<label>
+<span class="headerLbl">Truck</span>
 <select name="truck" id="truck">
  <option value="518">518</option>
  <option value="1020">1020</option>
  <option value="610">610</option>
 </select>
+</label>
 
-<label for="techs">Technician(s)</label>
+<label>
+<span class="headerLbl">Technician(s)</span>
 <select multiple name="techs" id="techs">
  <option value="Ron">Ron</option>
  <option value="James">James</option>
- <option value="newTech" id="newTech">Add new tech</option>
 </select>
-<input type="text" name="newTech" id="newTechBox" style="display: none;">
+</label>
 
-<label for="next0"></label>
-<input type="button" name="next0" id="next0" value="Next">
+<label><input type="button" name="next0" value="Next">
+</label>
 </form>
 
 <!--
@@ -61,7 +66,7 @@
 
 <form id="sheet">
 
-<label for="location">Address or Building Name</label>
+<label for="location">Address or Building Name</label> 
 <input type="text" name="location" class="location">
 
 <label for="unit">Unit Number/Label</label>
