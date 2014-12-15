@@ -1,13 +1,15 @@
 // Wrangling all JS logic in here
-// Obviously heavy dependence on jQuery here
+// building on top of jQuery
+// TODO: seriously, build it on top of jQuery. Working on getting familiar with that now
 
-// on DOMready
-// Apply events and 'app' behavior top-down,
-// filling as we go
-
+// on DOMready, initialize everything
 // TODO: Make this fit with paging, add device-specific features
-// TODO: Get rid of the specific IDs, loop the form? Maybe new branch
 $(function() {
+
+    // Loop over FORMs
+    //   element.makePretty()
+    //   element.eventListeners()
+    //   --leave hooks for customization
 
 	// Turn on calendar selector and behavior when a date is selected
 	$("#date").datepicker();
@@ -21,7 +23,6 @@ $(function() {
     );
 
     // Magic 'Add New' option for SELECTs
-    // TODO: Definitely need to rework my display logic
     makePrettySelect('techs', 'Add new technician');
 
     // Update techs when truck changes
