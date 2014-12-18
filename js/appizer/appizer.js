@@ -1,72 +1,108 @@
 // appIzer
 // version: alpha
-// jQuery(UI) Plugin
+//  jQuery(UI) Plugin
 
 ;(function( $,window,document,undefined ) {
+
+    // define appIzer
+    $.fn.appIzer = function(options) {
+        // Extend defaults
+        var settings = $.extend({}, $.fn.appIzer.defaults, options);
+
+        // Loop over everything to support multiple forms at once
+        this.each(function() {
+            // TODO: I bet multiple forms reqires logic here
+            
+            // Take over & prettify elements in the form
+            $(':input',this).each(function() {
+            
+                // Apply on 'change' listener to all elements
+                $(this).on('change', function() {
+                    $(this).appIzer.update(this.value);
+                });
+                
+                // Apply effects to element
+                $.fn.appIzer.makePretty(this);
+            });
+        });
+    };
+
+    // define defaults
+    $.fn.appIzer.defaults = {
+        addOptionText : 'Add new technician'
+    };
+
+    // update
+    $.fn.appIzer.update = function(input) {
+
+        // Get JSON response as {nextID:'id',toFill:htmlReplace}
+        $.getJSON('./backend/header.php?d='+input).done(function(data) {
+            // Check type of fill field
+            if ($('#'+data.nextID).attr('multiple')=='multiple') {
+                $('#div'+data.nextID).remove();
+                $('#'+data.nextID).html(data.toFill);
+                $('#'+data.nextID).appIzer.makePretty(data.nextID);
+            } else {
+                $('#'+data.nextID).html(data.toFill);
+            }
+        })
+    .fail(function(jqxHr,settings,exception){console.log(exception);});
+    };
+    
+    // applies effects to given element
+    // TODO: remove inline HTML
+    $.fn.appIzer.makePretty = function(element) {
+    
+        // If element is a string assume it's the element ID
+        if ( typeof element === 'string' ) {
+            element = $('#'+element);
+        }
+        var elementID = $(element).attr('id');
+
+        // Add datepicker
+        if ( $(element).hasClass('appizerDate') ) {
+            $(element).datepicker();
+        }
+        
+        // prettify multiple-select
+        // TODO: make all fields clickable, add delete
+        if ( $(element).attr('multiple')=='multiple' ) {
+            var counter = 0;
+            var divID = 'div'+elementID;
+            var spanID = 'span'+elementID;
+            var msg = $.fn.appIzer.defaults.addOptionText;
+            
+            // Prepend with newDIV
+            $('#'+elementID).before('<div class="multiSelect" id="'+divID+'"></div>');
+            // Loop OPTIONs, load into newDIV->SPANs
+            $('#'+elementID+'  option').each(function() {
+               var uspanID = spanID+counter;
+               $('#'+divID).append('<span class="multiSval" id="'+uspanID+'">'+$(this).val()+'</span>');
+               counter++;
+            });
+            $('#'+elementID).hide();
+
+            //TODO: add this during next plugin restruct
+            addNewOption(divID,elementID,msg,counter);
+        }
+        
+        // 
+    };
     
 }(jQuery,window,document));
 
 // on DOMready, initialize everything
-// TODO: Make this fit with paging, add device-specific features
 $(function() {
 
-    // Testing plugin
-    $('#truck').appIzer();
-
-    // Loop over FORMs
-    //   element.makePretty()
-    //   element.eventListeners()
-    //   --leave hooks for customization
-
-	// Turn on calendar selector and behavior when a date is selected
-	$("#date").datepicker();
-	$("#date").change(function(){ 
-
-            var qDate = $("#date").val(); // TODO: Sanitize
-            // Fill following fields
-            fillField('#truck',qDate);
-
-        }
-    );
-
-    // Magic 'Add New' option for SELECTs
-    makePrettySelect('techs', 'Add new technician');
-
-    // Update techs when truck changes
-    $("#truck").change(function(){
-        fillField('#techs',$("#truck").val());
-    });
+    // Turn on appIzer, this is going to get pulled out soon
+    $('#header').appIzer();
 
 });
-
-// Creates pretty, editable multiselects
-// Takes the SELECT field ID and optional replacement for the add new text
-// TODO: make every value editable
-function makePrettySelect(selectID,msg) {
-
-    msg = msg || 'Add new value';
-    var counter = 0;
-    var divID = 'div'+selectID;
-    var spanID = 'span'+selectID;
-
-    // Prepend with newDIV
-    $('#'+selectID).before('<div class="multiSelect" id="'+divID+'"></div>');
-    // Loop OPTIONs, load into newDIV->SPANs
-    $('#'+selectID+'  option').each(function() {
-        var uspanID = spanID+counter;
-        $('#'+divID).append('<span class="multiSval" id="'+uspanID+'">'+$(this).val()+'</span>');
-        counter++;
-    });
-    $('#'+selectID).hide();
-
-    addNewSelect(divID,selectID,msg,counter);
-
-}
 
 // Creates a clickable 'Add New' option to multiselect DIV
 // subroutine of makePrettySelect, don't use directly
 // Needs DIV and SELECT ids, msg to show for add text, counter for recursive use
-function addNewSelect(divID,selectID,msg,counter) {
+function addNewOption(divID,selectID,msg,counter) {
 
     counter = counter || 0;
     var newSpan = 'span'+divID+counter;
@@ -87,15 +123,8 @@ function addNewSelect(divID,selectID,msg,counter) {
         $('#'+selectID).append('<option selected value="'+newValue+'">'+newValue+'</option>');
         $('#'+newText).hide();
         $('#'+newSpan).show();
-        addNewSelect(divID,selectID,msg,++counter);
+        addNewOption(divID,selectID,msg,++counter);
     });
 
 }
 
-// Propogate changes forward
-function fillField( element, query ) {
-
-    // push data into fields
-    $(element).load('./backend/header.php?d='+query);
-
-}
