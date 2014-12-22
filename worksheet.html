@@ -30,6 +30,11 @@
 
 <form id="header">
 
+<label class="onlyFullsize">
+<span class="headerLbl">Day</span>
+<input type="text" name="day" required id="day" placeholder="today">
+</label>
+
 <label>
 <span class="headerLbl">Date</span>
 <input type="text" name="date" class="appizerDate" required id="date" placeholder="MM/DD/YYYY">
@@ -52,7 +57,9 @@
 </select>
 </label>
 
-<label><input type="button" name="next0" value="Next">
+<label class="notFullsize">
+<span class="headerLbl"></span>
+<input type="button" name="next0" value="Next">
 </label>
 </form>
 

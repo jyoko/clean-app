@@ -8,29 +8,6 @@ form
  margin-top: -3%;
 }
 
-/* Multiple Select via div/span for custom styles */
-
-div.multiSelect
-{
- margin-top: 1em;
-}
-
-div.multiSelect span:hover
-{
- background: #0fa;
-}
-
-.multiSval
-{
- display: block;
- font-style: normal;
-}
-
-span.multiAdd
-{
- display: block;
-}
-
 /* Header form styles */
 
 form#header input,select

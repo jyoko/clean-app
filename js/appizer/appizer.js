@@ -1,6 +1,8 @@
 // appIzer
-// version: alpha
-//  jQuery(UI) Plugin
+// version: pre-alpha
+//  used for easily modifying FORMs as a web-app
+//  jQuery(UI) Plugin-ish now
+//  Looking at React...
 
 ;(function( $,window,document,undefined ) {
 
@@ -17,7 +19,7 @@
             $(':input',this).each(function() {
             
                 // Apply on 'change' listener to all elements
-                $(this).on('change', function() {
+                $(this).on('change.appizer', function() {
                     $(this).appIzer.update(this.value);
                 });
                 
@@ -32,7 +34,7 @@
         addOptionText : 'Add new technician'
     };
 
-    // update
+    // update display forms - probably better as refresh()?
     $.fn.appIzer.update = function(input) {
 
         // Get JSON response as {nextID:'id',toFill:htmlReplace}
@@ -72,13 +74,26 @@
             var spanID = 'span'+elementID;
             var msg = $.fn.appIzer.defaults.addOptionText;
             
+            if ($('#'+divID).length) {
+                $('#'+divID).remove();
+            }
             // Prepend with newDIV
             $('#'+elementID).before('<div class="multiSelect" id="'+divID+'"></div>');
             // Loop OPTIONs, load into newDIV->SPANs
             $('#'+elementID+'  option').each(function() {
-               var uspanID = spanID+counter;
-               $('#'+divID).append('<span class="multiSval" id="'+uspanID+'">'+$(this).val()+'</span>');
-               counter++;
+                var uspanID = spanID+counter;
+                var spanClass = (this.selected)?'multiSval':'multiVal';
+                $('#'+divID).append('<span class="'+spanClass+'" id="'+uspanID+'">'+$(this).val()+'</span>');
+                // TODO: this feels inefficient as hell
+                $('#'+uspanID).on('click.appizer.'+uspanID, function() {
+                    $('#'+elementID+' option').each(function() {
+                        if(this.innerHTML == $('#'+uspanID).html()) {
+                            this.selected = (this.selected)?false:true;
+                            $.fn.appIzer.makePretty(elementID);
+                        }
+                    });
+                });
+                counter++;
             });
             $('#'+elementID).hide();
 
@@ -86,7 +101,9 @@
             addNewOption(divID,elementID,msg,counter);
         }
         
-        // 
+        // makePrettySelect pulling out
+        $.fn.appIzer.makePrettySelect = function(elementID) {}
+            
     };
     
 }(jQuery,window,document));
@@ -121,9 +138,11 @@ function addNewOption(divID,selectID,msg,counter) {
         var newValue = $('#'+newText).val();
         $('#'+newSpan).html(newValue);
         $('#'+selectID).append('<option selected value="'+newValue+'">'+newValue+'</option>');
-        $('#'+newText).hide();
+        $('#'+newText).remove();
         $('#'+newSpan).show();
-        addNewOption(divID,selectID,msg,++counter);
+        $.fn.appIzer.makePretty(selectID);
+
+        // TODO: $.fn.appIzer.update();
     });
 
 }
