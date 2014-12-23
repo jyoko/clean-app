@@ -1,6 +1,6 @@
 // appIzer
 // version: pre-alpha
-//  used for easily modifying FORMs as a web-app
+//  used for easily making FORMs as a web-app
 //  jQuery(UI) Plugin-ish now
 //  Looking at React...
 

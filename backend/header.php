@@ -5,6 +5,19 @@
 # This is meant to be very replaceable, returns JSON to fill next field
 # TODO: make this a generic pattern, something like:
 #        appIzer.update(changes)-> FIND_TYPE,VALIDATE,UPDATE-DB -> appIzer.refresh();
+#
+#                UI_event            ->          backend_action
+#        appIzer.FORM.change()
+#               .FORM.blur()
+#        appIzer.update(form_change) -> appIzer.receive(form_change)
+#                                    ->        .parse(form_change)
+#                                    ->        .updateDatabase(changes)
+#        appIzer.refresh()           <-        .returnResponse()
+#
+#       Since this crude PHP is going to get redone, trying to get the flow right
+#       Some clever hacks and 'fake' updating (eg: Facebook/React) can make this fast
+#        enough pretty easily til the server stack is mature.
+#
 #       Plan on this comment evolving
 
 // Check input string, query and give relevant data
