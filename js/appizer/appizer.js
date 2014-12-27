@@ -39,13 +39,16 @@
 
         // Get JSON response as {nextID:'id',toFill:htmlReplace}
         $.getJSON('./backend/header.php?d='+input).done(function(data) {
-            // Check type of fill field
-            if ($('#'+data.nextID).attr('multiple')=='multiple') {
-                $('#div'+data.nextID).remove();
-                $('#'+data.nextID).html(data.toFill);
-                $('#'+data.nextID).appIzer.makePretty(data.nextID);
-            } else {
-                $('#'+data.nextID).html(data.toFill);
+            if (data.toFill) {
+                // Check type of fill field
+                if ($('#'+data.nextID).attr('multiple')=='multiple') {
+                    $('#div'+data.nextID).remove();
+                    $('#'+data.nextID).html(data.toFill);
+                    $('#'+data.nextID).appIzer.makePretty(data.nextID);
+                } else {
+                    $('#'+data.nextID).html(data.toFill);
+                }
+                $.fn.appIzer.update($('#'+data.nextID).val());
             }
         })
     .fail(function(jqxHr,settings,exception){console.log(exception);});
